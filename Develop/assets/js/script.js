@@ -21,6 +21,10 @@ function createTaskCard(task) {
         .text('Delete')
         .attr('data-project-id', taskk.id);
     cardDeleteBtn.on('click', handleDeleteTask);
+
+    if (task.dueDate && task.status !== 'done') {
+        
+    }
 }
 
 // Todo: create a function to render the task list and make cards draggable
