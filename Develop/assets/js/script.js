@@ -23,7 +23,8 @@ function createTaskCard(task) {
     cardDeleteBtn.on('click', handleDeleteTask);
 
     if (task.dueDate && task.status !== 'done') {
-        
+        const now = dayjs();
+        const taskDueDate = dayjs(task.dueDate, 'DD/MM/YYYY');
     }
 }
 
