@@ -15,7 +15,7 @@ function createTaskCard(task) {
     const cardHeader = $('<div>').addClass('card-header h3').text(task.name);
     const cardBody = $('<div>').addClass('card-body');
     const cardDescription = $('<p>').addClass('card-text').text(task.tpye);
-
+    const cardDueDate = $('<p>').addClass('card-text').text(task.dueDate);
 }
 
 // Todo: create a function to render the task list and make cards draggable
