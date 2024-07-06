@@ -14,6 +14,7 @@ function createTaskCard(task) {
         .attr('data-task-id', task.id);
     const cardHeader = $('<div>').addClass('card-header h3').text(task.name);
     const cardBody = $('<div>').addClass('card-body');
+    const cardDescription = $('<p>').addClass('card-text').text(task.tpye);
 
 }
 
