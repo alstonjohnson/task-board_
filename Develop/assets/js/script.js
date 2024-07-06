@@ -16,6 +16,11 @@ function createTaskCard(task) {
     const cardBody = $('<div>').addClass('card-body');
     const cardDescription = $('<p>').addClass('card-text').text(task.tpye);
     const cardDueDate = $('<p>').addClass('card-text').text(task.dueDate);
+    const cardDeleteBtn = $('button')
+        .addClass('btn btn-danger delete')
+        .text('Delete')
+        .attr('data-project-id', taskk.id);
+    cardDeleteBtn.on('click', handleDeleteTask);
 }
 
 // Todo: create a function to render the task list and make cards draggable
