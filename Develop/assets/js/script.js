@@ -12,6 +12,7 @@ function createTaskCard(task) {
     const taskCard = $('<div>')
         .addClass('card task-card draggable my-3')
         .attr('data-task-id', task.id);
+    const cardHeader = $('<div>').addClass('card-header h3').text(task.name);
 
 }
 
