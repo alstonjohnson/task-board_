@@ -42,7 +42,13 @@ function createTaskCard(task) {
 
 // Todo: create a function to render the task list and make cards draggable
 function renderTaskList() {
-    const tasks = JSON.parse(localStorage.getItem('tasks')) ||
+    const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+
+    tasks.forEach(task => ) {
+        const taskCard = document.createElement('div'); 
+        taskCard.classList.add('task-card');
+        taskCard.textContent = task.title; 
+    }
 }
 
 // Todo: create a function to handle adding a new task
