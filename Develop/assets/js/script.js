@@ -49,7 +49,7 @@ function renderTaskList() {
             .addClass('taskCard')
             .text(task.title); 
 
-        const column = document.getElementById(task.progress);
+        const column = $(`#${task.progress}`);
         column.append(taskCard);
     });
 
