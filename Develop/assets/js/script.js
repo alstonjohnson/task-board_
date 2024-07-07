@@ -52,14 +52,14 @@ function renderTaskList() {
         const column = document.getElementById(task.progress);
         column.appendChild(taskCard);
     });
-    
+
     $('.draggable').draggable({
         opacity: 0.7,
         zIndex: 100,
         helper: function (e) {
-          const original = $(e.target).hasClass('ui-draggable')
+          const original = $(e.target).hasClass('.draggable')
             ? $(e.target)
-            : $(e.target).closest('.ui-draggable');
+            : $(e.target).closest('.draggable');
           return original.clone().css({
             width: original.outerWidth(),
           });
