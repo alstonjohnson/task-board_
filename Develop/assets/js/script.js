@@ -45,12 +45,12 @@ function renderTaskList() {
     const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
 
     tasks.forEach(task => {
-        const taskCard = document.createElement$('<div>'); 
-        taskCard.classList.add$('taskCard');
-        taskCard.textContent = task.title; 
+        const taskCard = $('<div>')
+            .addClass('taskCard')
+            .text(task.title); 
 
         const column = document.getElementById(task.progress);
-        column.appendChild(taskCard);
+        column.append(taskCard);
     });
 
     $('.draggable').draggable({
