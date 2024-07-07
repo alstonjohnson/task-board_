@@ -42,7 +42,7 @@ function createTaskCard(task) {
 
 // Todo: create a function to render the task list and make cards draggable
 function renderTaskList() {
-
+    const tasks = JSON.parse(localStorage.getItem('tasks')) ||
 }
 
 // Todo: create a function to handle adding a new task
