@@ -19,7 +19,7 @@ function createTaskCard(task) {
     const cardDeleteBtn = $('button')
         .addClass('btn btn-danger delete')
         .text('Delete')
-        .attr('data-project-id', taskk.id);
+        .attr('data-task-id', task.id);
     cardDeleteBtn.on('click', handleDeleteTask);
 
     if (task.dueDate && task.status !== 'done') {
