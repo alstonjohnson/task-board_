@@ -69,7 +69,7 @@ function renderTaskList() {
 
 // Todo: create a function to handle adding a new task
 // function handleAddTask(event){
-    $('#taskForm').submit(function(event) {
+    $('.container').submit(function(event) {
         event.preventDefault();
         const taskName = $('#taskName').val();
         const taskDescription = $('#taskDescription').val();
