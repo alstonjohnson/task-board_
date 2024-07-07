@@ -15,7 +15,7 @@ function createTaskCard(task) {
         .attr('data-task-id', task.id);
     const cardHeader = $('<div>').addClass('card-header h3').text(task.name);
     const cardBody = $('<div>').addClass('card-body');
-    const cardDescription = $('<p>').addClass('card-text').text(task.tpye);
+    const cardDescription = $('<p>').addClass('card-text').text(task.type);
     const cardDueDate = $('<p>').addClass('card-text').text(task.dueDate);
     const cardDeleteBtn = $('button')
         .addClass('btn btn-danger delete')
@@ -46,8 +46,8 @@ function renderTaskList() {
     const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
 
     tasks.forEach(task => {
-        const taskCard = document.createElement('div'); 
-        taskCard.classList.add('task-card');
+        const taskCard = document.createElement$('<div>'); 
+        taskCard.classList.add$('taskCard');
         taskCard.textContent = task.title; 
 
         const column = document.getElementById(task.progress);
