@@ -50,7 +50,7 @@ function renderTaskList() {
             .text(task.title); 
 
         const column = $(`#${task.progress}`);
-        column.append(taskCard);
+        column.append(card);
     });
 
     $('.draggable').draggable({
