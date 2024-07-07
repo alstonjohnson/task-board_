@@ -68,9 +68,19 @@ function renderTaskList() {
 }
 
 // Todo: create a function to handle adding a new task
-function handleAddTask(event){
-
-}
+// function handleAddTask(event){
+    $('#taskForm').submit(function(event) {
+        event.preventDefault();
+        const taskName = $('#taskName').val();
+        const taskDescription = $('#taskDescription').val();
+        
+        // Process the task data (e.g., add the task to the board)
+        // You can update the UI here to display the new task
+        
+        // Close the modal after adding the task
+        $('#formModal').modal('hide');
+      });
+// }
 
 // Todo: create a function to handle deleting a task
 function handleDeleteTask(event){
