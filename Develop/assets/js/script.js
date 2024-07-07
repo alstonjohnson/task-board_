@@ -52,19 +52,13 @@ function renderTaskList() {
         const column = $(`#${task.progress}`);
         column.append(taskCard);
     });
-
+    
     $('.draggable').draggable({
         opacity: 0.7,
         zIndex: 100,
-        helper: function (e) {
-          const original = $(e.target).hasClass('.draggable')
-            ? $(e.target)
-            : $(e.target).closest('.draggable');
-          return original.clone().css({
-            width: original.outerWidth(),
-          });
-        },
-      });
+        helper: 'clone'
+    });
+   
 }
 
 // Todo: create a function to handle adding a new task
