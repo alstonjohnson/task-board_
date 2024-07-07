@@ -24,7 +24,7 @@ function createTaskCard(task) {
 
     if (task.dueDate && task.status !== 'done') {
         const now = dayjs();
-        const taskDueDate = dayjs(task.dueDate, 'DD/MM/YYYY');
+        const taskDueDate = dayjs(task.dueDate, 'MM/DD/YYY');
 
         if (now.isSame(taskDueDate, 'day')) {
             taskCard.addClass('bg-warning text-white');
@@ -52,7 +52,7 @@ function renderTaskList() {
         const column = $(`#${task.progress}`);
         column.append(taskCard);
     });
-    
+
     $('.draggable').draggable({
         opacity: 0.7,
         zIndex: 100,
