@@ -44,11 +44,14 @@ function createTaskCard(task) {
 function renderTaskList() {
     const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
 
-    tasks.forEach(task => ) {
+    tasks.forEach(task => {
         const taskCard = document.createElement('div'); 
         taskCard.classList.add('task-card');
         taskCard.textContent = task.title; 
-    }
+
+        const column = document.getElementById(task.progress);
+        column.appendChild(taskCard);
+    });
 }
 
 // Todo: create a function to handle adding a new task
