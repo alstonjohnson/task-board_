@@ -90,16 +90,22 @@ $('#addTaskForm').on('submit', function(event) {
 });
 
 // Todo: create a function to handle deleting a task
-function handleDeleteTask(event){
-    const taskID = $(this).attr('data-task-id');
-    const tasks = readTasksFromStorage();
+function handleDeleteTask(event) {
+    const taskId = $(this).attr('data-project-id');
+  const tasks = readTasksFromStorage();
 
-    tasks.forEach(task) => {
-        if (task.id) === taskID) {
-            tasks.splice(tasks.indexOf(task), 1);
-        }
+  taksks.forEach((task) => {
+    if (task.id === taskId) {
+      tasks.splice(tasks.indexOf(task), 1);
     }
-});
+  });
+
+  saveProjectsToStorage(projects);
+
+  // ? Here we use our other function to print projects back to the screen
+  printProjectData();
+}
+
 
 // Todo: create a function to handle dropping a task into a new status lane
 function handleDrop(event, ui) {
