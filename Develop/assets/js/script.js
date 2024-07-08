@@ -74,6 +74,7 @@ function handleAddTask(eventtitle, description, dueDate){
     let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
 
     renderTaskList();
+}
 
 $('#addTaskForm').on('submit', function(event) {
     event.preventDefault();
@@ -87,8 +88,7 @@ $('#addTaskForm').on('submit', function(event) {
     $('#taskTitle').val('');
     $('#taskDescription').val('');
     $('#taskDueDate').val('');
-}
-}
+});
 
 // Todo: create a function to handle deleting a task
 function handleDeleteTask(event){
