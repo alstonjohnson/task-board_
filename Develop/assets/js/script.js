@@ -61,7 +61,7 @@ function renderTaskList() {
 }
 
 // Todo: create a function to handle adding a new task
-function handleAddTask(eventtitle, description, dueDate){
+function handleAddTask(title, description, dueDate){
     const newTask = {
         id: generateTaskId(),
         title: title,
