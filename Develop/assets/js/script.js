@@ -72,6 +72,8 @@ function handleAddTask(eventtitle, description, dueDate){
     };
 
     let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+
+    renderTaskList();
 }
 
 // Todo: create a function to handle deleting a task
