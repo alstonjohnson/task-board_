@@ -75,8 +75,10 @@ function handleAddTask(eventtitle, description, dueDate){
 
     renderTaskList();
 
-$('#addTaskForm').on('submit', function(event)
-})
+$('#addTaskForm').on('submit', function(event) {
+    event.preventDefault();
+}
+}
 
 // Todo: create a function to handle deleting a task
 function handleDeleteTask(event){
