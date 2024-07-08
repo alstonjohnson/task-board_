@@ -77,6 +77,10 @@ function handleAddTask(eventtitle, description, dueDate){
 
 $('#addTaskForm').on('submit', function(event) {
     event.preventDefault();
+
+    const title = $('#taskTitle').val();
+    const description = $('#taskDescription').val();
+    const dueData  = ('#taskDueDate').val();
 }
 }
 
