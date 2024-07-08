@@ -62,7 +62,7 @@ function renderTaskList() {
 }
 
 // Todo: create a function to handle adding a new task
-function handleAddTask(event){
+function handleAddTask(eventtitle, description, dueDate){
 
 }
 
