@@ -69,7 +69,9 @@ function handleAddTask(eventtitle, description, dueDate){
         description: description,
         dueDate: dueDate,
         progress: 'not-started'
-    }
+    };
+
+    let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
 }
 
 // Todo: create a function to handle deleting a task
