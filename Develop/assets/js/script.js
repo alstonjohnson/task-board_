@@ -83,6 +83,10 @@ $('#addTaskForm').on('submit', function(event) {
     const dueDate  = ('#taskDueDate').val();
 
     addNewTask(title, description, dueDate)
+
+    $('#taskTitle').val('');
+    $('#taskDescription').val('');
+    $('#taskDueDate').val('');
 }
 }
 
