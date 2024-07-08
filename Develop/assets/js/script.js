@@ -102,7 +102,6 @@ function handleDeleteTask(event) {
 
   saveProjectsToStorage(projects);
 
-  // ? Here we use our other function to print projects back to the screen
   printProjectData();
 }
 
