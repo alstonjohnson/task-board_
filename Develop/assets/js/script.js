@@ -47,12 +47,9 @@ function renderTaskList() {
     $('.taskCard').remove();
 
     tasks.forEach(task => {
-        const taskCard = $('<div>')
-            .addClass('taskCard')
-            .text(task.title); 
-
+        const taskCard = createTaskCard(task);
         const column = $(`#${task.progress}`);
-        column.append(card);
+        column.append(taskCard);
     });
 
     $('.draggable').draggable({
