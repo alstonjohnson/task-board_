@@ -93,7 +93,13 @@ $('#addTaskForm').on('submit', function(event) {
 function handleDeleteTask(event){
     const taskID = $(this).attr('data-task-id');
     const tasks = readTasksFromStorage();
-}
+
+    tasks.forEach(task) => {
+        if (task.id) === taskID) {
+            tasks.splice(tasks.indexOf(task), 1);
+        }
+    }
+});
 
 // Todo: create a function to handle dropping a task into a new status lane
 function handleDrop(event, ui) {
