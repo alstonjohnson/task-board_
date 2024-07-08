@@ -44,6 +44,8 @@ function createTaskCard(task) {
 function renderTaskList() {
     const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
 
+    $('.taskCard').remove();
+
     tasks.forEach(task => {
         const taskCard = $('<div>')
             .addClass('taskCard')
