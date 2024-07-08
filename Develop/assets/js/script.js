@@ -91,7 +91,7 @@ $('#addTaskForm').on('submit', function(event) {
 
 // Todo: create a function to handle deleting a task
 function handleDeleteTask(event){
-
+    const taskID = $(this).attr
 }
 
 // Todo: create a function to handle dropping a task into a new status lane
