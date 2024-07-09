@@ -44,33 +44,89 @@ function createTaskCard(task) {
 function renderTaskList() {
     const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
 
-    $('.taskCard').remove();
+    // $('.taskCard').remove();
 
-    tasks.forEach(task => {
-        const taskCard = createTaskCard(task);
-        const column = $(`#${task.progress}`);
-        column.append(taskCard);
-    });
+    // tasks.forEach(task => {
+    //     const taskCard = createTaskCard(task);
+    //     const column = $(`#${task.progress}`);
+    //     column.append(taskCard);
+    // });
 
-    $('.draggable').draggable({
-        opacity: 0.7,
-        zIndex: 100,
-        helper: 'clone'
-    });
+    // $('.draggable').draggable({
+    //     opacity: 0.7,
+    //     zIndex: 100,
+    //     helper: 'clone'
+    // });
+
+     // ? Empty existing task cards out of the lanes
+  const todoList = $('#todo-cards');
+  todoList.empty();
+
+  const inProgressList = $('#in-progress-cards');
+  inProgressList.empty();
+
+  const doneList = $('#done-cards');
+  doneList.empty();
+
+  // ? Loop through tasks and create task cards for each status
+  for (let task of tasks) {
+    if (task.status === 'to-do') {
+      todoList.append(createtaskCard(task));
+    } else if (task.status === 'in-progress') {
+      inProgressList.append(createtaskCard(task));
+    } else if (task.status === 'done') {
+      doneList.append(createtaskCard(task));
+    }
+  }
+
+  // ? Use JQuery UI to make task cards draggable
+  $('.draggable').draggable({
+    opacity: 0.7,
+    zIndex: 100,
+    // ? This is the function that creates the clone of the card that is dragged. This is purely visual and does not affect the data.
+    helper: function (e) {
+      // ? Check if the target of the drag event is the card itself or a child element. If it is the card itself, clone it, otherwise find the parent card  that is draggable and clone that.
+      const original = $(e.target).hasClass('ui-draggable')
+        ? $(e.target)
+        : $(e.target).closest('.ui-draggable');
+      // ? Return the clone with the width set to the width of the original card. This is so the clone does not take up the entire width of the lane. This is to also fix a visual bug where the card shrinks as it's dragged to the right.
+      return original.clone().css({
+        width: original.outerWidth(),
+      });
+    },
+  });
    
 }
 
 // Todo: create a function to handle adding a new task
-function handleAddTask(title, description, dueDate){
-    const newTask = {
-        id: generateTaskId(),
-        title: title,
-        description: description,
-        dueDate: dueDate,
-        progress: 'not-started'
-    };
+// function handleAddTask(title, description, dueDate){
+    function handleAddTask(event) {
+        event.preventDefault()
 
-    let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+    const task = {
+        id: generateTaskId(),
+        title: $('#taskTitle').val(),
+        description: $('#taskDueDate').val(),
+        dueDate: $('#taskDescription').val(),
+        progress: 'to-do'
+    };
+    taskList.push(task);
+
+    localStorage.setItem('tasks', JSON.stringify(taskList));
+
+
+  // ? Pull the tasks from localStorage and push the new task to the array
+    // let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+
+  // ? Save the updated tasks array to localStorage
+
+
+  // ? Print task data back to the screen
+
+  // ? Clear the form inputs
+  $('#taskTitle').val('');
+  $('#taskDueDate').val('');
+  $('#taskDescription').val('');
 
     renderTaskList();
 }
@@ -103,7 +159,7 @@ function handleDeleteTask(event) {
 
   saveTasksToStorage(tasks);
 
-  printTaskData();
+  renderTaskList();
 }
 
 
@@ -122,21 +178,28 @@ function handleDrop(event, ui) {
     }
 
     localStorage.setItem('tasks', JSON.stringify(tasks));
-    printTaskData();
+    renderTaskList();
 
 }
 
 // Todo: when the page loads, render the task list, add event listeners, make lanes droppable, and make the due date field a date picker
 $(document).ready(function () {
-    printTaskData();
+    // renderTaskList();
+    renderTaskList();
+
+    
+    $('#taskForm').on('submit', handleAddTask);
+
+
+    $('lane').droppable({
+        accept: '.draggable',
+        drop: handleDrop,
+    });
 
     $('#taskDueDate').datepicker({
         changeMonth: true,
         changeYear: true,
     })
 
-    $('lane').droppable({
-        accept: '.draggable',
-        drop: handleDrop,
-    });
+   
 });
