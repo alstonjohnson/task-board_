@@ -133,4 +133,9 @@ $(document).ready(function () {
         changeMonth: true,
         changeYear: true,
     })
+
+    $('lane').droppable({
+        accept: '.draggable',
+        drop: handleDrop,
+    });
 });
