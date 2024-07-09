@@ -79,8 +79,9 @@ $('#addTaskForm').on('submit', function(event) {
     event.preventDefault();
 
     const title = $('#taskTitle').val();
-    const description = $('#taskDescription').val();
     const dueDate  = ('#taskDueDate').val();
+    const description = $('#taskDescription').val();
+    
 
     addNewTask(title, description, dueDate)
 
