@@ -110,6 +110,8 @@ function handleDeleteTask(event) {
 function handleDrop(event, ui) {
     const tasks = readTasksFromStorage();
 
+    const taskID = ui.draggable[0].dataset.taskID;
+
 }
 
 // Todo: when the page loads, render the task list, add event listeners, make lanes droppable, and make the due date field a date picker
