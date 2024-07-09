@@ -91,8 +91,8 @@ $('#addTaskForm').on('submit', function(event) {
 
 // Todo: create a function to handle deleting a task
 function handleDeleteTask(event) {
-    const taskId = $(this).attr('data-project-id');
-  const tasks = readTasksFromStorage();
+    const taskId = $(this).attr('data-task-id');
+    const tasks = readTasksFromStorage();
 
   taksks.forEach((task) => {
     if (task.id === taskId) {
@@ -100,9 +100,9 @@ function handleDeleteTask(event) {
     }
   });
 
-  saveProjectsToStorage(projects);
+  saveTasksToStorage(tasks);
 
-  printProjectData();
+  printTaskData();
 }
 
 
