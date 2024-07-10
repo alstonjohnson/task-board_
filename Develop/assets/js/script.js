@@ -77,7 +77,6 @@ function renderTaskList() {
     //     helper: 'clone'
     // });
 
-     // ? Empty existing task cards out of the lanes
   const todoList = $('#todo-cards');
   todoList.empty();
 
@@ -87,7 +86,6 @@ function renderTaskList() {
   const doneList = $('#done-cards');
   doneList.empty();
 
-  // ? Loop through tasks and create task cards for each status
   for (let task of tasks) {
     if (task.status === 'to-do') {
       todoList.append(createtaskCard(task));
@@ -98,7 +96,6 @@ function renderTaskList() {
     }
   }
 
-  // ? Use JQuery UI to make task cards draggable
   $('.draggable').draggable({
     opacity: 0.7,
     zIndex: 100,
@@ -169,15 +166,6 @@ function handleDeleteTask(event) {
     // localStorage.setItem('tasks', JSON.stringify(taskList));
 
 
-  // ? Pull the tasks from localStorage and push the new task to the array
-    // let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
-
-  // ? Save the updated tasks array to localStorage
-
-
-  // ? Print task data back to the screen
-
-  // ? Clear the form inputs
 //   $('#taskTitle').val('');
 //   $('#taskDueDate').val('');
 //   $('#taskDescription').val('');
@@ -229,7 +217,7 @@ function handleDrop(event, ui) {
 
 }
 
-$('#taskForm').on('submit', handleAddTask);
+// $('#taskForm').on('submit', handleAddTask);
 
 
 
@@ -239,8 +227,8 @@ $(document).ready(function () {
     renderTaskList();
 
     
-    // $('#taskForm').on('submit', handleAddTask); 
-    
+    $('#taskForm').on('submit', handleAddTask); 
+
     $('#taskDueDate').datepicker({
         changeMonth: true,
         changeYear: true,
