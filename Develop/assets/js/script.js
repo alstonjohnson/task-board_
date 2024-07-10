@@ -13,12 +13,13 @@ function generateTaskId() {
 
 function readTasksFromStorage() {
     let tasks = JSON.parse(localStorage.getItem('tasks'));
+    console.log(tasks);
 
     if (!tasks) {
         tasks = [];
     }
 
-    return tasks = [];
+    return tasks;
 }
 
 function saveTasksToStorage(tasks) {
@@ -34,7 +35,7 @@ function createTaskCard(task) {
     const cardBody = $('<div>').addClass('card-body');
     const cardDescription = $('<p>').addClass('card-text').text(task.type);
     const cardDueDate = $('<p>').addClass('card-text').text(task.dueDate);
-    const cardDeleteBtn = $('button')
+    const cardDeleteBtn = $('<button>')
         .addClass('btn btn-danger delete')
         .text('Delete')
         .attr('data-task-id', task.id);
@@ -77,86 +78,88 @@ function renderTaskList() {
     //     helper: 'clone'
     // });
 
-  const todoList = $('#todo-cards');
-  todoList.empty();
+    const todoList = $('#todo-cards');
+    todoList.empty();
 
-  const inProgressList = $('#in-progress-cards');
-  inProgressList.empty();
+    const inProgressList = $('#in-progress-cards');
+    inProgressList.empty();
 
-  const doneList = $('#done-cards');
-  doneList.empty();
+    const doneList = $('#done-cards');
+    doneList.empty();
 
-  for (let task of tasks) {
-    if (task.status === 'to-do') {
-      todoList.append(createtaskCard(task));
-    } else if (task.status === 'in-progress') {
-      inProgressList.append(createtaskCard(task));
-    } else if (task.status === 'done') {
-      doneList.append(createtaskCard(task));
+    for (let task of tasks) {
+        if (task.status === 'to-do') {
+            todoList.append(createTaskCard(task));
+        } else if (task.status === 'in-progress') {
+            inProgressList.append(createTaskCard(task));
+        } else if (task.status === 'done') {
+            doneList.append(createTaskCard(task));
+        }
     }
-  }
 
-  $('.draggable').draggable({
-    opacity: 0.7,
-    zIndex: 100,
-    // ? This is the function that creates the clone of the card that is dragged. This is purely visual and does not affect the data.
-    helper: function (e) {
-      // ? Check if the target of the drag event is the card itself or a child element. If it is the card itself, clone it, otherwise find the parent card  that is draggable and clone that.
-      const original = $(e.target).hasClass('ui-draggable')
-        ? $(e.target)
-        : $(e.target).closest('.ui-draggable');
-      // ? Return the clone with the width set to the width of the original card. This is so the clone does not take up the entire width of the lane. This is to also fix a visual bug where the card shrinks as it's dragged to the right.
-      return original.clone().css({
-        width: original.outerWidth(),
-      });
-    },
-  });
-   
+    $('.draggable').draggable({
+        opacity: 0.7,
+        zIndex: 100,
+        // ? This is the function that creates the clone of the card that is dragged. This is purely visual and does not affect the data.
+        helper: function (e) {
+            // ? Check if the target of the drag event is the card itself or a child element. If it is the card itself, clone it, otherwise find the parent card  that is draggable and clone that.
+            const original = $(e.target).hasClass('ui-draggable')
+                ? $(e.target)
+                : $(e.target).closest('.ui-draggable');
+            // ? Return the clone with the width set to the width of the original card. This is so the clone does not take up the entire width of the lane. This is to also fix a visual bug where the card shrinks as it's dragged to the right.
+            return original.clone().css({
+                width: original.outerWidth(),
+            });
+        },
+    });
+
 }
 
 // Todo: create a function to handle deleting a task
 function handleDeleteTask(event) {
+    event.preventDefault();
     const taskId = $(this).attr('data-task-id');
     const tasks = readTasksFromStorage();
 
-  taksks.forEach((task) => {
-    if (task.id === taskId) {
-      tasks.splice(tasks.indexOf(task), 1);
-    }
-  });
 
-  saveTasksToStorage(tasks);
+    tasks.forEach((task) => {
+        if (task.id === taskId) {
+            tasks.splice(tasks.indexOf(task), 1);
+        }
+    });
 
-  renderTaskList();
+    saveTasksToStorage(tasks);
+
+    renderTaskList();
 }
 
 
 // Todo: create a function to handle adding a new task
 // function handleAddTask(title, description, dueDate){
-    function handleAddTask(event) {
-        event.preventDefault()
+function handleAddTask(event) {
+    event.preventDefault()
 
-        const taskTitle = taskTitleInputEl.val().trim();
-        const taskDescription = taskDescriptionInputEl.val();
-        const taskDate = taskDueDateInputEl.val();
-
-    // const task = {
-    //     id: generateTaskId(),
-    //     title: $('#taskTitle').val(),
-    //     description: $('#taskDueDate').val(),
-    //     dueDate: $('#taskDescription').val(),
-    //     progress: 'to-do'
-    // };
+    const taskTitle = taskTitleInputEl.val().trim();
+    const taskDescription = taskDescriptionInputEl.val();
+    const taskDate = taskDueDateInputEl.val();
 
     const task = {
-        title: taskTitle,
-        description: taskDescription,
-        dueDate: taskDate,
-        status: 'to-do',
+        id: generateTaskId(),
+        title: $('#taskTitle').val(),
+        description: $('#taskDueDate').val(),
+        dueDate: $('#taskDescription').val(),
+        status: 'to-do'
     };
 
+    // const task = {
+    //     title: taskTitle,
+    //     description: taskDescription,
+    //     dueDate: taskDate,
+    //     status: 'to-do',
+    // };
+
     const tasks = readTasksFromStorage();
-        tasks.push(task);
+    tasks.push(task);
 
     saveTasksToStorage(tasks);
 
@@ -166,16 +169,16 @@ function handleDeleteTask(event) {
     // localStorage.setItem('tasks', JSON.stringify(taskList));
 
 
-//   $('#taskTitle').val('');
-//   $('#taskDueDate').val('');
-//   $('#taskDescription').val('');
+    //   $('#taskTitle').val('');
+    //   $('#taskDueDate').val('');
+    //   $('#taskDescription').val('');
 
     taskTitleInputEl.val('');
     taskDescriptionInputEl.val('');
     taskDueDateInputEl.val('');
 }
 
-    // renderTaskList();
+// renderTaskList();
 
 
 // $('#addTaskForm').on('submit', function(event) {
@@ -185,7 +188,7 @@ function handleDeleteTask(event) {
 //     const title = $('#taskTitle').val();
 //     const dueDate  = ('#taskDueDate').val();
 //     const description = $('#taskDescription').val();
-    
+
 
 //     addNewTask(title, description, dueDate)
 
@@ -226,8 +229,8 @@ $(document).ready(function () {
     // renderTaskList();
     renderTaskList();
 
-    
-    $('#taskForm').on('submit', handleAddTask); 
+
+    $('#taskForm').on('submit', handleAddTask);
 
     $('#taskDueDate').datepicker({
         changeMonth: true,
@@ -240,6 +243,6 @@ $(document).ready(function () {
         drop: handleDrop,
     });
 
-  
-   
+
+
 });
