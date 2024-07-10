@@ -190,22 +190,22 @@ function handleDeleteTask(event) {
     // renderTaskList();
 
 
-$('#addTaskForm').on('submit', function(event) {
-    event.preventDefault();
+// $('#addTaskForm').on('submit', function(event) {
+//     event.preventDefault();
 
-    const form = $('#taskForm').val();
-    const title = $('#taskTitle').val();
-    const dueDate  = ('#taskDueDate').val();
-    const description = $('#taskDescription').val();
+//     const form = $('#taskForm').val();
+//     const title = $('#taskTitle').val();
+//     const dueDate  = ('#taskDueDate').val();
+//     const description = $('#taskDescription').val();
     
 
-    addNewTask(title, description, dueDate)
+//     addNewTask(title, description, dueDate)
 
-    // $('#taskForm').val('');
-    $('#taskTitle').val('');
-    $('#taskDescription').val('');
-    $('#taskDueDate').val('');
-});
+//     // $('#taskForm').val('');
+//     $('#taskTitle').val('');
+//     $('#taskDescription').val('');
+//     $('#taskDueDate').val('');
+// });
 
 
 
@@ -229,7 +229,8 @@ function handleDrop(event, ui) {
 
 }
 
-// $('#taskForm').on('submit', handleAddTask);
+$('#taskForm').on('submit', handleAddTask);
+
 
 
 // Todo: when the page loads, render the task list, add event listeners, make lanes droppable, and make the due date field a date picker
@@ -238,7 +239,12 @@ $(document).ready(function () {
     renderTaskList();
 
     
-    $('#taskForm').on('submit', handleAddTask); 
+    // $('#taskForm').on('submit', handleAddTask); 
+    
+    $('#taskDueDate').datepicker({
+        changeMonth: true,
+        changeYear: true,
+    })
 
 
     $('lane').droppable({
@@ -246,10 +252,6 @@ $(document).ready(function () {
         drop: handleDrop,
     });
 
-    $('#taskDueDate').datepicker({
-        changeMonth: true,
-        changeYear: true,
-    })
-
+  
    
 });
