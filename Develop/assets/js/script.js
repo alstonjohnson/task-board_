@@ -1,6 +1,10 @@
 // Retrieve tasks and nextId from localStorage
 let taskList = JSON.parse(localStorage.getItem("tasks"));
 let nextId = JSON.parse(localStorage.getItem("nextId"));
+const taskFormInputEl = $('#taskForm');
+const taskTitleInputEl = $('#taskTitle');
+const taskDueDateInputEl = $('#taskDueDate');
+const taskDescriptionInputEl = $('#taskDescription');
 
 // Todo: create a function to generate a unique task id
 function generateTaskId() {
@@ -113,17 +117,43 @@ function renderTaskList() {
    
 }
 
+// Todo: create a function to handle deleting a task
+function handleDeleteTask(event) {
+    const taskId = $(this).attr('data-task-id');
+    const tasks = readTasksFromStorage();
+
+  taksks.forEach((task) => {
+    if (task.id === taskId) {
+      tasks.splice(tasks.indexOf(task), 1);
+    }
+  });
+
+  saveTasksToStorage(tasks);
+
+  renderTaskList();
+}
 // Todo: create a function to handle adding a new task
 // function handleAddTask(title, description, dueDate){
     function handleAddTask(event) {
         event.preventDefault()
 
+        const taskTitle = taskTitleInputEl.val().trim();
+        const taskDescription = taskDescriptionInputEl.val();
+        const taskDate = taskDueDateInputEl.val();
+
+    // const task = {
+    //     id: generateTaskId(),
+    //     title: $('#taskTitle').val(),
+    //     description: $('#taskDueDate').val(),
+    //     dueDate: $('#taskDescription').val(),
+    //     progress: 'to-do'
+    // };
+
     const task = {
-        id: generateTaskId(),
-        title: $('#taskTitle').val(),
-        description: $('#taskDueDate').val(),
-        dueDate: $('#taskDescription').val(),
-        progress: 'to-do'
+        title: taskTitle
+        description: taskDescription,
+        dueDate: taskDate,
+        status: 'to-do',
     };
 
     const tasks = readTasksFromStorage();
@@ -146,12 +176,17 @@ function renderTaskList() {
   // ? Print task data back to the screen
 
   // ? Clear the form inputs
-  $('#taskTitle').val('');
-  $('#taskDueDate').val('');
-  $('#taskDescription').val('');
+//   $('#taskTitle').val('');
+//   $('#taskDueDate').val('');
+//   $('#taskDescription').val('');
+
+    taskTitleInputEl.val('');
+    taskDescriptionInputElInputEl.val('');
+    taskDueDateInputElDateInputEl.val('');
+}
 
     // renderTaskList();
-}
+
 
 $('#addTaskForm').on('submit', function(event) {
     event.preventDefault();
@@ -168,21 +203,7 @@ $('#addTaskForm').on('submit', function(event) {
     $('#taskDueDate').val('');
 });
 
-// Todo: create a function to handle deleting a task
-function handleDeleteTask(event) {
-    const taskId = $(this).attr('data-task-id');
-    const tasks = readTasksFromStorage();
 
-  taksks.forEach((task) => {
-    if (task.id === taskId) {
-      tasks.splice(tasks.indexOf(task), 1);
-    }
-  });
-
-  saveTasksToStorage(tasks);
-
-  renderTaskList();
-}
 
 
 // Todo: create a function to handle dropping a task into a new status lane
@@ -204,13 +225,16 @@ function handleDrop(event, ui) {
 
 }
 
+// $('#taskForm').on('submit', handleAddTask);
+
+
 // Todo: when the page loads, render the task list, add event listeners, make lanes droppable, and make the due date field a date picker
 $(document).ready(function () {
     // renderTaskList();
     renderTaskList();
 
     
-    $('#taskForm').on('submit', handleAddTask);
+    $('#taskForm').on('submit', handleAddTask); 
 
 
     $('lane').droppable({
