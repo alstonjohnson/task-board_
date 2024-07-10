@@ -7,6 +7,20 @@ function generateTaskId() {
     return crypto.randomUUID();
 }
 
+function readTasksFromStorage() {
+    let tasks = JSON.parse(localStorage.getItem('tasks'));
+
+    if (!tasks) {
+        tasks = [];
+    }
+
+    return tasks = [];
+}
+
+function saveTasksToStorage(tasks) {
+    localStorage.setItem('tasks', JSON.stringify(tasks));
+}
+
 // Todo: create a function to create a task card
 function createTaskCard(task) {
     const taskCard = $('<div>')
@@ -110,6 +124,8 @@ function renderTaskList() {
         dueDate: $('#taskDescription').val(),
         progress: 'to-do'
     };
+
+    const tasks = readTasksFromStorage();
     taskList.push(task);
 
     localStorage.setItem('tasks', JSON.stringify(taskList));
