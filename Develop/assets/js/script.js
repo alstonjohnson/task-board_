@@ -126,7 +126,7 @@ function renderTaskList() {
     };
 
     const tasks = readTasksFromStorage();
-    taskList.push(task);
+        tasks.push(task);
 
     localStorage.setItem('tasks', JSON.stringify(taskList));
 
