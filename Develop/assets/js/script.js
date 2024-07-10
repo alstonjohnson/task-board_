@@ -166,8 +166,8 @@ function renderTaskList() {
 //   $('#taskDescription').val('');
 
     taskTitleInputEl.val('');
-    taskDescriptionInputElInputEl.val('');
-    taskDueDateInputElDateInputEl.val('');
+    taskDescriptionInputEl.val('');
+    taskDueDateInputEl.val('');
 }
 
     // renderTaskList();
@@ -199,7 +199,7 @@ $('#addTaskForm').on('submit', function(event) {
 
     addNewTask(title, description, dueDate)
 
-    $('#taskForm').val('');
+    // $('#taskForm').val('');
     $('#taskTitle').val('');
     $('#taskDescription').val('');
     $('#taskDueDate').val('');
