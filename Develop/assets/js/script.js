@@ -117,21 +117,6 @@ function renderTaskList() {
    
 }
 
-// Todo: create a function to handle deleting a task
-function handleDeleteTask(event) {
-    const taskId = $(this).attr('data-task-id');
-    const tasks = readTasksFromStorage();
-
-  taksks.forEach((task) => {
-    if (task.id === taskId) {
-      tasks.splice(tasks.indexOf(task), 1);
-    }
-  });
-
-  saveTasksToStorage(tasks);
-
-  renderTaskList();
-}
 // Todo: create a function to handle adding a new task
 // function handleAddTask(title, description, dueDate){
     function handleAddTask(event) {
@@ -150,7 +135,7 @@ function handleDeleteTask(event) {
     // };
 
     const task = {
-        title: taskTitle
+        title: taskTitle,
         description: taskDescription,
         dueDate: taskDate,
         status: 'to-do',
@@ -187,10 +172,26 @@ function handleDeleteTask(event) {
 
     // renderTaskList();
 
+// Todo: create a function to handle deleting a task
+function handleDeleteTask(event) {
+    const taskId = $(this).attr('data-task-id');
+    const tasks = readTasksFromStorage();
+
+  taksks.forEach((task) => {
+    if (task.id === taskId) {
+      tasks.splice(tasks.indexOf(task), 1);
+    }
+  });
+
+  saveTasksToStorage(tasks);
+
+  renderTaskList();
+}
 
 $('#addTaskForm').on('submit', function(event) {
     event.preventDefault();
 
+    const form = $('#taskForm').val();
     const title = $('#taskTitle').val();
     const dueDate  = ('#taskDueDate').val();
     const description = $('#taskDescription').val();
@@ -198,6 +199,7 @@ $('#addTaskForm').on('submit', function(event) {
 
     addNewTask(title, description, dueDate)
 
+    $('#taskForm').val('');
     $('#taskTitle').val('');
     $('#taskDescription').val('');
     $('#taskDueDate').val('');
