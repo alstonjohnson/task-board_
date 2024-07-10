@@ -128,6 +128,10 @@ function renderTaskList() {
     const tasks = readTasksFromStorage();
         tasks.push(task);
 
+    saveTasksToStorage(tasks);
+
+    
+
     localStorage.setItem('tasks', JSON.stringify(taskList));
 
 
