@@ -131,6 +131,7 @@ function renderTaskList() {
 
     saveTasksToStorage(tasks);
 
+    renderTaskList();
 
 
     // localStorage.setItem('tasks', JSON.stringify(taskList));
@@ -149,7 +150,7 @@ function renderTaskList() {
   $('#taskDueDate').val('');
   $('#taskDescription').val('');
 
-    renderTaskList();
+    // renderTaskList();
 }
 
 $('#addTaskForm').on('submit', function(event) {
