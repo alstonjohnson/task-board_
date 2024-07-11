@@ -238,7 +238,7 @@ $(document).ready(function () {
     })
 
 
-    $('lane').droppable({
+    $('.lane').droppable({
         accept: '.draggable',
         drop: handleDrop,
     });
