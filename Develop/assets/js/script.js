@@ -146,8 +146,8 @@ function handleAddTask(event) {
     const task = {
         id: generateTaskId(),
         title: $('#taskTitle').val(),
-        description: $('#taskDueDate').val(),
-        dueDate: $('#taskDescription').val(),
+        dueDate: $('#taskDueDate').val(),
+        description: $('#taskDescription').val(),
         status: 'to-do'
     };
 
