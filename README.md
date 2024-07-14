@@ -10,7 +10,7 @@ N/A
 ## Usage
 You can use this site to help you stay organized by dropping your to-do tasks into each status lane when necessary. 
 
-Link to deployed site: ()
+Link to deployed site: (https://alstonjohnson.github.io/task-board/)
 
 ## Credits
 I had help from my instructors and the AskBCS team.
