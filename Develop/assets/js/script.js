@@ -143,27 +143,34 @@ function handleAddTask(event) {
     const taskDescription = taskDescriptionInputEl.val();
     const taskDate = taskDueDateInputEl.val();
 
+    // const task = {
+    //     id: generateTaskId(),
+    //     title: $('#taskTitle').val(),
+    //     dueDate: $('#taskDueDate').val(),
+    //     description: $('#taskDescription').val(),
+    //     status: 'to-do'
+    // };
+
     const task = {
         id: generateTaskId(),
-        title: $('#taskTitle').val(),
-        dueDate: $('#taskDueDate').val(),
-        description: $('#taskDescription').val(),
-        status: 'to-do'
+        title: taskTitle,
+        description: taskDescription,
+        dueDate: taskDate,
+        status: 'to-do',
     };
-
-    // const task = {
-    //     title: taskTitle,
-    //     description: taskDescription,
-    //     dueDate: taskDate,
-    //     status: 'to-do',
-    // };
 
     const tasks = readTasksFromStorage();
     tasks.push(task);
 
     saveTasksToStorage(tasks);
+        renderTaskList();
+        taskFormInputEl.val('');
+        taskDescriptionInputEl.val('');
+        taskDueDateInputEl.val('');
 
-    renderTaskList();
+}
+
+    // renderTaskList();
 
 
     // localStorage.setItem('tasks', JSON.stringify(taskList));
@@ -173,10 +180,10 @@ function handleAddTask(event) {
     //   $('#taskDueDate').val('');
     //   $('#taskDescription').val('');
 
-    taskTitleInputEl.val('');
-    taskDescriptionInputEl.val('');
-    taskDueDateInputEl.val('');
-}
+//     taskTitleInputEl.val('');
+//     taskDescriptionInputEl.val('');
+//     taskDueDateInputEl.val('');
+// }
 
 // renderTaskList();
 
@@ -205,9 +212,9 @@ function handleAddTask(event) {
 function handleDrop(event, ui) {
     const tasks = readTasksFromStorage();
 
-    const taskID = ui.draggable[0].dataset.taskID;
+    const taskID = ui.draggable.attr('data-task-id');
 
-    const newStatus = event.target.id
+    const newStatus = event.target.id;
 
     for (let task of tasks) {
         if (task.id === taskID) {
@@ -215,7 +222,10 @@ function handleDrop(event, ui) {
         }
     }
 
-    localStorage.setItem('tasks', JSON.stringify(tasks));
+    // localStorage.setItem('tasks', JSON.stringify(tasks));
+    // renderTaskList();
+
+    saveTasksToStorage(tasks);
     renderTaskList();
 
 }
